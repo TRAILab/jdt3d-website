@@ -38,46 +38,6 @@
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSPQB2LZ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://www.trailab.utias.utoronto.ca/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav> -->
 
 
 <section class="hero">
@@ -174,10 +134,10 @@
         <h2 class="title is-3">Key Features</h2>
         <div class="content has-text-justified">
           <ul>
-            <li>Tracking-by-Attention (TBA): JDT3D uses a TBA approach, which represents objects as vector embeddings or "queries" to detect them across multiple frames.
-            <li>Joint Detection and Tracking (JDT): The model performs detection and tracking jointly in an end-to-end manner, enabling the exchange of information between the detector and tracker.
-            <li>Track Sampling Augmentation: JDT3D employs a novel data augmentation method that injects consistent objects over multiple LiDAR frames to enrich supervision signals while maintaining temporal consistency.
-            <li>Confidence-based Query Propagation: The model uses a confidence threshold for query propagation during both training and inference to prevent over-trusting false positive queries.
+            <li><strong>Tracking-by-Attention (TBA)</strong>: JDT3D uses a TBA approach, which represents objects as vector embeddings or "queries" to detect them across multiple frames.
+            <li><strong>Joint Detection and Tracking</strong> (JDT): The model performs detection and tracking jointly in an end-to-end manner, enabling the exchange of information between the detector and tracker.
+            <li><strong>Track Sampling Augmentation:</strong> JDT3D employs a novel data augmentation method that injects consistent objects over multiple LiDAR frames to enrich supervision signals while maintaining temporal consistency.
+            <li><strong>Confidence-based Query Propagation</strong>: The model uses a confidence threshold for query propagation during both training and inference to prevent over-trusting false positive queries.
             </ul>
         </div>
       </div>
@@ -200,6 +160,58 @@
   </div>
 </section>
 
+
+<section class=""section>
+  <div class="container is-max-desktop">
+    <div class=""columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <embed src="./static/images/simplified_JDT3D.pdf" alt="Simplified_TBA">
+          <p>
+            Tracking-by-attention performs online multi-object tracking by representing unique objects with
+            embeddings or "queries" that are propagated across frames. These object queries are passed between time steps
+            and used to detect objects in the scene. Queries that output high confidence predictions in multiple frames
+            are considered to be associated with the same object.
+          </p>
+          <p>
+            This approach has shown promising results
+            in the 2D and vision-based tracking domains. However, the performance of TBA methods in the 3D LiDAR
+            tracking domain has yet to match that of tracking-by-detection (TBD) methods. JDT3D explores this performance
+            gap, proposing a novel LiDAR-based tracking method that addresses the limitations of existing LiDAR-based TBA methods.
+          </p>
+        </div>
+        <h2 class="title is-3">Track Sampling Augmentation</h2>
+        <div class="content has-text-justified">
+          <embed src="./static/images/TrackSampling_Vis_63_with_caption.pdf" alt="Track_Sampling_Augmentation">
+          <p>
+            JDT3D introduces a novel data augmentation method called Track Sampling Augmentation (TSA) to enrich the supervision
+            signals for the model. TSA injects consistent objects over multiple LiDAR frames to maintain temporal consistency while
+            providing additional supervision signals for the model. This method enables the model to learn from a more diverse set
+            of object configurations and improves the robustness of the model to occlusions and object interactions.
+          </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Visualization</h2>
+        <div class="content has-text-justified">
+          <embed src="./static/images/jdt3d_qualitative_result.pdf" alt="JDT3D Visualization">
+        <div class="publication-video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/yv9vrpCSqR8?si=U2CTmhGAWYM2DAW5"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
