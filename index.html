@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="JDT3D is a novel LiDAR-based tracking method that addresses the performance gap between tracking-by-detection (TBD) and tracking-by-attention (TBA) methods. It is designed for multi-object tracking in autonomous driving.">
+    content="JDT3D is a novel LiDAR-based tracking method that addresses the performance gap between tracking-by-detection (TBD) and tracking-by-attention (TBA) methods. It is designed for multi-object tracking in autonomous driving.">
   <meta name="keywords" content="Multi-Object Tracking, Autonomous Vehicles, Computer Vision">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JDT3D: Addressing the Gaps in LiDAR-Based Tracking-by-Attention</title>
 
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TSPQB2LZ');</script>
-    <!-- End Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TSPQB2LZ');</script>
+  <!-- End Google Tag Manager -->
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/TRAIL_BLACK_ICON.png">
 
@@ -34,222 +36,236 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSPQB2LZ"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSPQB2LZ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">JDT3D: Addressing the Gaps in LiDAR-Based Tracking-by-Attention</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://www.trailab.utias.utoronto.ca/brian-cheong">Brian Cheong</a>,</span>
-            <span class="author-block">
-              <a href="https://www.trailab.utias.utoronto.ca/jason-zhou">Jiachen Zhou</a>,</span>
-            <span class="author-block">
-              <a href="https://www.trailab.utias.utoronto.ca/steven-waslander">Steven Waslander</a>,
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">University of Toronto</span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08296.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2407.04926"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://youtu.be/8SDMfQEPrbs?si=PlyH2jDXZesf2wos"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/TRAILab/JDT3D"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
+            <h1 class="title is-1 publication-title">JDT3D: Addressing the Gaps in LiDAR-Based Tracking-by-Attention
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://www.trailab.utias.utoronto.ca/brian-cheong">Brian Cheong</a>,</span>
+              <span class="author-block">
+                <a href="https://www.trailab.utias.utoronto.ca/jason-zhou">Jiachen Zhou</a>,</span>
+              <span class="author-block">
+                <a href="https://www.trailab.utias.utoronto.ca/steven-waslander">Steven Waslander</a>,
               </span>
             </div>
 
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">University of Toronto</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08296.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2407.04926" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://youtu.be/8SDMfQEPrbs?si=PlyH2jDXZesf2wos"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/TRAILab/JDT3D" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <div class="has-text-centered">
-        <embed src="./static/images/JDT3D_Architecture_v6.pdf" alt="JDT3D Architecture">
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="has-text-centered">
+          <embed src="./static/images/JDT3D_Architecture_v6.pdf" alt="JDT3D Architecture">
+        </div>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">JDT3D</span> is a novel LiDAR-based tracking method designed for end-to-end multi-object
+          tracking in autonomous driving.
+        </h2>
       </div>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">JDT3D</span> is a novel LiDAR-based tracking method designed for end-to-end multi-object tracking in autonomous driving.
-      </h2>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Key Features</h2>
-        <div class="content has-text-justified">
-          <ul>
-            <li><strong>Tracking-by-Attention (TBA)</strong>: JDT3D uses a TBA approach, which represents objects as vector embeddings or "queries" to detect them across multiple frames.
-            <li><strong>Joint Detection and Tracking</strong> (JDT): The model performs detection and tracking jointly in an end-to-end manner, enabling the exchange of information between the detector and tracker.
-            <li><strong>Track Sampling Augmentation:</strong> JDT3D employs a novel data augmentation method that injects consistent objects over multiple LiDAR frames to enrich supervision signals while maintaining temporal consistency.
-            <li><strong>Confidence-based Query Propagation</strong>: The model uses a confidence threshold for query propagation during both training and inference to prevent over-trusting false positive queries.
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Key Features</h2>
+          <div class="content has-text-justified">
+            <ul>
+              <li><strong>Tracking-by-Attention (TBA)</strong>: JDT3D uses a TBA approach, which represents objects as
+                vector embeddings or "queries" to detect them across multiple frames.
+              <li><strong>Joint Detection and Tracking</strong> (JDT): The model performs detection and tracking jointly
+                in an end-to-end manner, enabling the exchange of information between the detector and tracker.
+              <li><strong>Track Sampling Augmentation:</strong> JDT3D employs a novel data augmentation method that
+                injects consistent objects over multiple LiDAR frames to enrich supervision signals while maintaining
+                temporal consistency.
+              <li><strong>Confidence-based Query Propagation</strong>: The model uses a confidence threshold for query
+                propagation during both training and inference to prevent over-trusting false positive queries.
             </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <!--/ Abstract. -->
+      <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/8SDMfQEPrbs?si=-t1pFral63_IQXkV"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/8SDMfQEPrbs?si=-t1pFral63_IQXkV"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
+      <!--/ Paper video. -->
     </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
+  </section>
 
 
-<section class=""section>
-  <div class="container is-max-desktop">
-    <div class=""columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Introduction</h2>
-        <div class="content has-text-justified">
-          <embed src="./static/images/simplified_JDT3D.pdf" alt="Simplified_TBA">
-          <p>
-            Tracking-by-attention performs online multi-object tracking by representing unique objects with
-            embeddings or "queries" that are propagated across frames. These object queries are passed between time steps
-            and used to detect objects in the scene. Queries that output high confidence predictions in multiple frames
-            are considered to be associated with the same object.
-          </p>
-          <p>
-            This approach has shown promising results
-            in the 2D and vision-based tracking domains. However, the performance of TBA methods in the 3D LiDAR
-            tracking domain has yet to match that of tracking-by-detection (TBD) methods. JDT3D explores this performance
-            gap, proposing a novel LiDAR-based tracking method that addresses the limitations of existing LiDAR-based TBA methods.
-          </p>
-        </div>
-        <h2 class="title is-3">Track Sampling Augmentation</h2>
-        <div class="content has-text-justified">
-          <embed src="./static/images/TrackSampling_Vis_63_with_caption.pdf" alt="Track_Sampling_Augmentation">
-          <p>
-            JDT3D introduces a novel data augmentation method called Track Sampling Augmentation (TSA) to enrich the supervision
-            signals for the model. TSA injects consistent objects over multiple LiDAR frames to maintain temporal consistency while
-            providing additional supervision signals for the model. This method enables the model to learn from a more diverse set
-            of object configurations and improves the robustness of the model to occlusions and object interactions.
-          </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Visualization</h2>
-        <div class="content has-text-justified">
-          <embed src="./static/images/jdt3d_qualitative_result.pdf" alt="JDT3D Visualization">
-        <div class="publication-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/yv9vrpCSqR8?si=U2CTmhGAWYM2DAW5"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <section class="" section>
+    <div class="container is-max-desktop">
+      <div class="" columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Introduction</h2>
+          <div class="content has-text-justified">
+            <embed src="./static/images/simplified_JDT3D.pdf" alt="Simplified_TBA">
+            <p>
+              Tracking-by-attention performs online multi-object tracking by representing unique objects with
+              embeddings or "queries" that are propagated across frames. These object queries are passed between time
+              steps
+              and used to detect objects in the scene. Queries that output high confidence predictions in multiple
+              frames
+              are considered to be associated with the same object.
+            </p>
+            <p>
+              This approach has shown promising results
+              in the 2D and vision-based tracking domains. However, the performance of TBA methods in the 3D LiDAR
+              tracking domain has yet to match that of tracking-by-detection (TBD) methods. JDT3D explores this
+              performance
+              gap, proposing a novel LiDAR-based tracking method that addresses the limitations of existing LiDAR-based
+              TBA methods.
+            </p>
+          </div>
+          <h2 class="title is-3">Track Sampling Augmentation</h2>
+          <div class="content has-text-justified">
+            <embed src="./static/images/TrackSampling_Vis_63_with_caption.pdf" alt="Track_Sampling_Augmentation">
+            <p>
+              JDT3D introduces a novel data augmentation method called Track Sampling Augmentation (TSA) to enrich the
+              supervision
+              signals for the model. TSA injects consistent objects over multiple LiDAR frames to maintain temporal
+              consistency while
+              providing additional supervision signals for the model. This method enables the model to learn from a more
+              diverse set
+              of object configurations and improves the robustness of the model to occlusions and object interactions.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{cheongJDT3DAddressingGaps2024,
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Visualization</h2>
+          <div class="content has-text-justified">
+            <embed src="./static/images/jdt3d_qualitative_result.pdf" alt="JDT3D Visualization">
+            <div class="publication-video">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/yv9vrpCSqR8?si=U2CTmhGAWYM2DAW5"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{cheongJDT3DAddressingGaps2024,
   author    = {Cheong, Brian and Zhou, Jiachen and Waslander, Steven},
   title     = {JDT3D: Addressing the Gaps in LiDAR-Based Tracking-by-Attention},
   journal   = {ECCV},
   year      = {2024},  
 }</code></pre>
-  </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://github.com/TRAILab" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            Thank you to the authors of <a
-              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the website template.
-          </p>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://github.com/TRAILab" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Thank you to the authors of <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the
+              website template.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
