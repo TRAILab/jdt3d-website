@@ -1,4 +1,4 @@
-# Nerfies
+# JTD3D
 
 This is the repository that contains source code for the [JDT3D website](https://trailab.github.io/jdt3d-website/).
 
