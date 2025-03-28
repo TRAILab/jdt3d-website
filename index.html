@@ -209,6 +209,18 @@
               of object configurations and improves the robustness of the model to occlusions and object interactions.
             </p>
           </div>
+          <h2 class="title is-3">Confidence-based Query Propagation</h2>
+          <div class="content has-text-justified">
+            <!-- <embed src="./static/images/Confidence_Threshold.pdf" style="width: 100%;" alt="Confidence_Threshold"> -->
+            <img src="./static/images/JDT3D Query Passing - Threshold-based query prop.png" style="width: 100%;" alt="Confidence_Threshold">
+            <p>
+              JDT3D employs a confidence threshold for query propagation during both training and inference. This
+              approach prevents the model from over-trusting false positive queries, which can lead to incorrect
+              associations and degraded performance. It also ensures a consistent query passing criterion between training and inference.
+              By using a confidence threshold, JDT3D ensures that only high
+              confidence queries are propagated across frames, naturally creating instances of false positive and false
+              negative track queries and improving the overall tracking performance.
+            </p>
         </div>
       </div>
   </section>
